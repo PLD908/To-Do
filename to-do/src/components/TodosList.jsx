@@ -1,4 +1,7 @@
-import React from 'react'
+import React from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const TodosList = ({ todos, setTodos, setEditTodo }) => {
     const handleCompleted = (todo) => {
@@ -24,8 +27,39 @@ const TodosList = ({ todos, setTodos, setEditTodo }) => {
         setEditTodo(findTodo);
     }
 
-    const handleDelete = ({id}) => {
-        setTodos(todos.filter((todo) => todo.id !== id))
+    const handleDelete = ({ id, title }) => {
+      // Use jsx option to render a custom confirmation toast
+      const deleteToast = toast.info(
+        <div>
+          <p>Are you sure you want to delete "{title}"?</p>
+          <button
+            className='toast'
+            onClick={() => {
+              setTodos(todos.filter((todo) => todo.id !== id));
+              toast.success('Deleted', {
+                position: 'top-center',
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              });
+              toast.dismiss(deleteToast); // Close the confirmation toast after deletion
+            }}
+          >
+            Yes, Delete
+          </button>
+        </div>,
+        {
+          position: 'top-center',
+          autoClose: false, // Don't automatically close the confirmation toast
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          closeButton: true,
+        }
+      );
     };
 
   return (
