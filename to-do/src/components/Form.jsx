@@ -1,15 +1,43 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {v4 as uuidv4} from 'uuid'
 
-const Form = ({ input, setInput, todos, setTodos }) => {
+const Form = ({ input, setInput, todos, setTodos, editTodo, setEditTodo }) => {
+  const updateTodo = (title, id, completed) => {
+    const newTodo = todos.map((todo) => 
+      todo.id === id ? {title, id, completed} : todo
+    );
+    setTodos(newTodo);
+    setEditTodo("");
+  };
+
+  useEffect(() => {
+    if (editTodo) {
+      setInput(editTodo.title)
+    } else {
+      setInput("")
+    }
+  }, [setInput, editTodo]);
+
   const onInputChange = (event) => {
     setInput(event.target.value);
   };
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    setTodos([...todos, {id: uuidv4(), title: input, completed: false}]);
-    setInput("");
+    if (!editTodo) {
+      const newTask = { id: uuidv4(), title: input, completed: false };
+      setTodos((prevTodos) => [newTask, ...prevTodos]);
+      setInput("");
+    } else {
+      updateTodo(input, editTodo.id, editTodo.completed);
+    }
+  };
+  
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      onFormSubmit(event);
+    }
   };
 
   return (
@@ -22,8 +50,11 @@ const Form = ({ input, setInput, todos, setTodos }) => {
               value={input}
               required
               onChange={onInputChange}
+              onKeyDown={handleKeyDown}
               />
-            <button type="submit"><i class="fa-solid fa-plus"></i></button>
+            <button type="submit">
+              {editTodo ? "OK" : <i className="fa-solid fa-plus"></i>}
+            </button>
         </div>
     </form>
   )
