@@ -43,6 +43,7 @@ const TodosList = ({ todos, setTodos, setEditTodo }) => {
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
+                style: { background: '#DFDBE5', color: 'gray' },
               });
               toast.dismiss(deleteToast); // Close the confirmation toast after deletion
             }}
@@ -69,7 +70,7 @@ const TodosList = ({ todos, setTodos, setEditTodo }) => {
                 <input type="text" value={todo.title} className={`list ${todo.completed ? "complete" : ""}`} onChange={(event) => event.preventDefault()} />
                 <div className="icons">
                     <button type="button" onClick={()=> handleCompleted(todo)}>
-                        <i className="fa-solid fa-bookmark"></i>
+                        <i class="fa-solid fa-square-check"></i>
                     </button>
                     <button type="button" onClick={() => handleEditTodo(todo)}>
                         <i className="fa-solid fa-edit"></i>
