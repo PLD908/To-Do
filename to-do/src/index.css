@@ -92,7 +92,7 @@ li{
 .complete{
     text-decoration-style: solid;
     text-decoration-line: line-through;
-    text-decoration-color: #DFDBE5;
+    text-decoration-color: red;
     opacity: 0.4em;
 }
 
@@ -104,12 +104,6 @@ li{
     padding: 0.6em;
 }
 
-/* Customize the progress bar */
 .Toastify__progress-bar {
-  background: gray;
-}
-
-/* Customize the check mark */
-.Toastify__toast--success:after {
-  background: blue !important;
+    background: gray;
 }
