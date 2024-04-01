@@ -64,7 +64,7 @@ const TodosList = ({ todos, setTodos, setEditTodo }) => {
     };
 
   return (
-    <div>
+    <div className='todo'>
         {todos.map((todo) => (
             <li className='todo-list' key={todo.id}>
                 <input type="text" value={todo.title} className={`list ${todo.completed ? "complete" : ""}`} onChange={(event) => event.preventDefault()} />
