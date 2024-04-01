@@ -12,7 +12,7 @@ body{
     box-shadow: 0 0 10px inset;
     padding: 1em;
     padding-bottom: 3em;
-    width: 40%;
+    width: 50%;
     margin: 0 auto;
     text-align: center;
     border-radius: 0.8em;
@@ -37,15 +37,16 @@ body{
 .input-box input{
     width: 80%;
     padding: 0.7em;
-    background-color: gray;
-    color: #DFDBE5;
+    background-color: #DFDBE5;
+    color: gray;
     border: none;
+    border-right: 1px solid gray;
     border-radius: 1em 0 0 1em;
     outline: 1px solid gray;
 }
 
 input::placeholder{
-    color: #DFDBE5;
+    color: gray;
 }
 
 .input-box button{
@@ -83,6 +84,10 @@ li{
     outline: none;
     border: none;
     color: gray;
+}
+
+.todo-list input{
+    width: 80%;
 }
 
 .icons button{
